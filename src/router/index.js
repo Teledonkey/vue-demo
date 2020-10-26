@@ -6,6 +6,12 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/box',
+    name: 'box',
+    component: () => import(/* webpackChunkName: "about" */ '../views/test/box.vue')
+
+  },
+  {
     path: '/',
     name: 'Home',
     component: Home
