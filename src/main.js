@@ -6,6 +6,8 @@ import store from './store'
 import ElementUI from 'element-ui';
 //引入element样式文件
 import 'element-ui/lib/theme-chalk/index.css';
+//引入弹性盒子布局样式
+import './assets/css/flex.css';
 //使用element
 Vue.use(ElementUI);
 Vue.config.productionTip = false

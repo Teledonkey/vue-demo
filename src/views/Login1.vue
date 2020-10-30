@@ -12,7 +12,6 @@
 
       <el-form-item label="" prop="username">
         <el-input
-          type="text"
           v-model="loginForm.username"
           placeholder="请输入用户名"
         ></el-input>
@@ -40,7 +39,7 @@
       <el-form-item label="">
         <el-row :gutter="20">
           <el-col :span="12">
-            <el-button class="my-button" type="primary" @click="submit"
+            <el-button type="primary" class="my-button" @click="submit"
               >登录</el-button
             >
           </el-col>
@@ -58,9 +57,9 @@ export default {
   data() {
     return {
       loginForm: {
-        username: "", //用户名
-        password: "", //密码
-        code: "", //验证码
+        username: "",
+        password: "",
+        code: "",
       },
       rules: {
         username: [
@@ -95,6 +94,9 @@ export default {
         }
       });
     },
+    onSumbit() {
+      //登录表单提交
+    },
   },
 };
 </script>
@@ -104,20 +106,20 @@ export default {
   height: 100%;
 }
 
+.login-form {
+  height: 300px;
+  width: 350px;
+  padding: 20px 35px;
+  box-shadow: 0 0 25px #cac6c6;
+  border-radius: 20px;
+}
+
 .login-title {
   font-size: 24px;
   font-weight: 600;
 }
 
-.login-form {
-  height: 300px;
-  width: 350px;
-  padding: 20px 35px;
-  border-radius: 10px;
-  box-shadow: 0 0 25px #cac6c6;
-}
-
-.login-container /deep/ .el-form-item__content {
+.login-form /deep/ .el-form-item__content {
   margin-left: 0px !important;
 }
 
