@@ -12,7 +12,7 @@
         </template>
         <menu-item :menuList="menu.children"></menu-item>
       </el-submenu>
-      <el-menu-item v-else :index="menu.path" :key="menu.key">
+      <el-menu-item v-else :index="menu.path" :key="menu.key" @click="selectMenu(menu)">
         <i :class="menu.icon"></i>
         <span slot="title">{{ menu.label }}</span>
       </el-menu-item>
@@ -29,6 +29,11 @@ export default {
   components: {
     MenuItem,
   },
+  methods: {
+    selectMenu(menu) {
+      this.$store.commit("selectMenu",menu);
+    },
+  }
 };
 </script>
 

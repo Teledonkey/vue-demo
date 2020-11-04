@@ -2,8 +2,6 @@
   <el-menu
     default-active="1-4-1"
     class="menu-bar"
-    @open="handleOpen"
-    @close="handleClose"
     :collapse="isCollapse"
     unique-opened
   >
@@ -21,6 +19,7 @@ export default {
   },
   data() {
     return {
+      isCollapse: false,
       menuList: [
         {
           children: [
@@ -214,7 +213,5 @@ export default {
   border-right: none;
 }
 
-.el-aside {
-  border-right: 1px solid #e6e6e6;
-}
+
 </style>
