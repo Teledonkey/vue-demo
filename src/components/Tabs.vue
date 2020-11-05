@@ -3,6 +3,7 @@
     v-model="editableTabsValue"
     type="card"
     closable
+    @tab-click="tabClick"
     @tab-remove="removeTab"
   >
     <el-tab-pane
@@ -33,7 +34,7 @@ export default {
           return this.$store.state.MenuStore.tabs;
         },
         set(val) {
-          this.$store.state.MenuStore.tabs = val;
+          this.$store.commit("setTabs",val);
         }
       }),
       //当前激活的选项卡
@@ -42,7 +43,7 @@ export default {
           return this.$store.state.MenuStore.editableTabsValue;
         },
         set(val) {
-          this.$store.state.MenuStore.editableTabsValue = val;
+          this.$store.commit("setEditableTabsValue",val);
         }
       })
     },
@@ -62,8 +63,13 @@ export default {
       }
     },
     methods: {
+      //点击选项卡
+      tabClick(tab) {
+        console.log(tab)
+      },
+      //删除选项卡
       removeTab(targetName) {
-        console.log(targetName);
+        // console.log(targetName);
         //不关闭首页
         if (targetName === "desktop") {
           return;
@@ -83,6 +89,9 @@ export default {
         
         this.editableTabsValue = activeName;
         this.editableTabs = tabs.filter(tab => tab.name !== targetName);
+
+        //刷新sessionStorage中的tabs和当前激活的选项卡内容 
+        sessionStorage.setItem("tabList",JSON.stringify(this.editableTabs));
       }
     }
 };

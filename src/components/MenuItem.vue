@@ -31,7 +31,10 @@ export default {
   },
   methods: {
     selectMenu(menu) {
+      //设置选项卡
       this.$store.commit("selectMenu",menu);
+      //设置路由
+      this.$router.push({name:menu.name});
     },
   }
 };

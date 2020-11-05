@@ -28,6 +28,7 @@
         <!-- 右边内容显示区 -->
         <el-main>
           <tabs></tabs>
+          <router-view></router-view>
         </el-main>
         <!-- <el-footer>Footer</el-footer> -->
       </el-container>

@@ -1,6 +1,6 @@
 <template>
   <el-menu
-    default-active="1-4-1"
+    :default-active="this.$route.path"
     class="menu-bar"
     :collapse="isCollapse"
     unique-opened

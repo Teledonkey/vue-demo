@@ -10,8 +10,18 @@ export default {
     ],
   },
   mutations: {
+      getTabs(state){
+        let storedTabs = sessionStorage.getItem("tabList");
+        if (storedTabs) {
+          let currentTabs = JSON.parse(storedTabs);
+          state.tabs = currentTabs;
+        }
+      },
+      setActiveTab(state,currentTab) {
+        state.editableTabsValue = currentTab;
+      },
       selectMenu(state,menu){
-          console.log(menu);
+          // console.log(menu);
           //把当前点击的菜单对象添加到tabs
           //1.判断tabs中是否包含当前菜单对象
           //2.如果不包含，则添加到tabs中
@@ -24,8 +34,13 @@ export default {
           }
           //设置当前选中对象
           state.editableTabsValue = menu.name;
-          console.log(state.tabs);
+          // console.log(state.tabs);
+          //保存当前tabs内容到sessionStorage
+          sessionStorage.setItem("tabList",JSON.stringify(state.tabs));
       },
+      setEditableTabsValue(state,newEditableTabsValue) {
+        state.editableTabsValue = newEditableTabsValue;
+      }
   },
   actions: {},
 };
