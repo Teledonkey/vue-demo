@@ -12,6 +12,8 @@ import './assets/css/flex.css';
 Vue.use(ElementUI);
 Vue.config.productionTip = false
 
+
+
 router.beforeEach((to,from,next) => {
   //to 即将进入的路由
   //from 即将离开的路由

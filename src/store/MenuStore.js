@@ -38,9 +38,6 @@ export default {
           //保存当前tabs内容到sessionStorage
           sessionStorage.setItem("tabList",JSON.stringify(state.tabs));
       },
-      setEditableTabsValue(state,newEditableTabsValue) {
-        state.editableTabsValue = newEditableTabsValue;
-      }
   },
   actions: {},
 };

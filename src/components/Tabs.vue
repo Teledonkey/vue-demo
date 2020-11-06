@@ -34,7 +34,7 @@ export default {
           return this.$store.state.MenuStore.tabs;
         },
         set(val) {
-          this.$store.commit("setTabs",val);
+          this.$store.state.MenuStore.tabs = val;
         }
       }),
       //当前激活的选项卡
@@ -43,7 +43,7 @@ export default {
           return this.$store.state.MenuStore.editableTabsValue;
         },
         set(val) {
-          this.$store.commit("setEditableTabsValue",val);
+          this.$store.state.MenuStore.editableTabsValue = val;
         }
       })
     },
@@ -92,6 +92,9 @@ export default {
 
         //刷新sessionStorage中的tabs和当前激活的选项卡内容 
         sessionStorage.setItem("tabList",JSON.stringify(this.editableTabs));
+        //显示路由
+        this.$router.push({name: this.editableTabsValue});
+
       }
     }
 };

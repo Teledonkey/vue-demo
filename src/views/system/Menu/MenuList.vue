@@ -1,6 +1,6 @@
 <template>
     <div>
-        菜单管理
+        权限管理
     </div>
 </template>
 
