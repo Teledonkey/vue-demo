@@ -33,7 +33,7 @@ export default {
               state.tabs.push(tab_tmp);
           }
           //设置当前选中对象
-          state.editableTabsValue = menu.name;
+          // state.editableTabsValue = menu.name;
           // console.log(state.tabs);
           //保存当前tabs内容到sessionStorage
           sessionStorage.setItem("tabList",JSON.stringify(state.tabs));

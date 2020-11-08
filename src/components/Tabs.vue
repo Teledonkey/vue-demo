@@ -65,7 +65,15 @@ export default {
     methods: {
       //点击选项卡
       tabClick(tab) {
-        console.log(tab)
+        // console.log(tab);
+        //组装tabs数据
+        let tab_tmp = {};
+        tab_tmp.title = tab.label;
+        tab_tmp.name = tab.name;
+        this.$store.commit("selectMenu",tab_tmp);
+        console.log(this.$route.path);
+        //显示路由
+        this.$router.push({name:tab_tmp.name});
       },
       //删除选项卡
       removeTab(targetName) {

@@ -31,6 +31,11 @@ const routes = [
     component: Home,
     children: [
       {
+        path: '/desktop',
+        name: 'desktop',
+        component: () => import('@/views/Desktop.vue')
+      },
+      {
         path: '/departmentList',
         name: 'departmentList',
         component: () => import('@/views/system/Department/DepartmentList.vue')
