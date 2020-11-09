@@ -8,6 +8,8 @@ export default {
         name: "desktop",
       }
     ],
+    //菜单数据
+    menu_data: [],
   },
   mutations: {
       getTabs(state){
@@ -37,6 +39,34 @@ export default {
           // console.log(state.tabs);
           //保存当前tabs内容到sessionStorage
           sessionStorage.setItem("tabList",JSON.stringify(state.tabs));
+      },
+
+      getMenuList(state,router) {
+        //1.获取sessionStorage中的菜单数据
+        let menuList = sessionStorage.getItem("menuList");
+        //2.设置菜单数据
+        if (menuList) {
+          state.menu_data = JSON.parse(menuList);
+        }
+        //3.取出路由数据
+        let oldRouterList = sessionStorage.getItem("routerList");
+        let dynamicRouterList = [];
+        if (oldRouterList) {
+          dynamicRouterList = JSON.parse(oldRouterList);
+        }
+        // console.log(dynamicRouterList)
+        //4.动态的生成路由
+          //4.1获取原来的路由
+        let staticRouterList = router.options.routes;
+        // console.log(staticRouterList)
+          //4.2动态生成路由
+          //        component: () => import('@/views/system/Department/DepartmentList.vue')
+        dynamicRouterList.forEach(dynRoute => {
+          dynRoute.component = () => import(`@/views${dynRoute.url}.vue`);
+          staticRouterList[1].children.push(dynRoute);
+        });
+        //5.设置路由
+        router.addRoutes(staticRouterList);
       },
   },
   actions: {},
