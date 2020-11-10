@@ -20,12 +20,15 @@ export default {
   },
   computed: {
     ...mapState({
-      menuList: state => state.MenuStore.menu_data
+      //获取vuex中的菜单数据
+      menuList: state => state.MenuStore.menu_data,
+      //获取vuex中的isCollapse属性
+      isCollapse: state => state.MenuStore.isCollapse,
     })
   },
   data() {
     return {
-      isCollapse: false,
+      // isCollapse: false,
       // menuList: [
       //   {
       //     children: [

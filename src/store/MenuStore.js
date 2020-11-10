@@ -8,8 +8,10 @@ export default {
         name: "desktop",
       }
     ],
-    //菜单数据
+    //左侧菜单数据
     menu_data: [],
+    //菜单收缩属性
+    isCollapse: false,
   },
   mutations: {
       getTabs(state){
@@ -67,6 +69,9 @@ export default {
         });
         //5.设置路由
         router.addRoutes(staticRouterList);
+      },
+      setOpenOrClose(state) {
+        state.isCollapse = !state.isCollapse;
       },
   },
   actions: {},
