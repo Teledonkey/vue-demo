@@ -20,23 +20,32 @@ router.beforeEach((to, from, next) => {
   //设置tabs中当前激活的选项卡
   store.commit("setActiveTab", to.name);
 
-  //解决刷新后菜单没有问题
+  //解决刷新后vuex中菜单没有的问题
   let menuData = sessionStorage.getItem("menuList");
-
+  // console.log(menuData);
   if (menuData) {
     //缓存有菜单数据
     if (store.state.MenuStore.menu_data.length == 0) {
-      //vuex中没有数据，需将缓存数据拉到vuex中
+      //vuex中没有数据，router中也没有动态路由，需将缓存数据拉到vuex和router中，并且要重定向路由，不然无法找到新添加的动态路由
       store.commit("getMenuList", router);
       next({ path: to.path });
     }
-    next();
+    // console.log(store.state.MenuStore.menu_data);
+    if (to.path === "/login") {
+      //且是登录页
+      // console.log("这里是有缓存且是登录页");
+      next({ path: "/home" });
+    } else {
+      // console.log("这里是有缓存但不是登录页");
+      next();
+    }
   } else {
     //没有缓存
     if (to.path === "/login") {
       //且是登陆页
       next();
     } else {
+      //没有缓存又不是登录页，说明非法访问，强制跳转到登录页
       next({ path: "/login" });
     }
   }
