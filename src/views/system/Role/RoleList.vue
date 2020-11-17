@@ -99,7 +99,11 @@
     </el-dialog>
     <!-- 分配权限弹框 -->
     <el-dialog :title="autnTitle" :visible.sync="autnDialogVisible" width="30%">
-      <span>这是一段信息</span>
+      <tree
+        :nodes="treeDatas"
+        @onCheck="ztreeOnCheck"
+        @onCreated="handleCreated"
+      />
       <span slot="footer" class="dialog-footer">
         <el-button @click="autnDialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="autnDialogVisible = false"
@@ -115,31 +119,39 @@
 import tree from "vue-giant-tree";
 
 export default {
-  components() {
-    tree;
+  components: {
+    tree,
   },
   data() {
     return {
-      innerVisible: false, //控制弹框显示
+      //ztree数据
+      treeDatas: [],
+      //ztree对象
       ztreeObj: null,
+      //ztree配置，参照ztree官网的配置
       setting: {
         check: {
+          //树是否带复选框或单选框
           enable: true,
         },
         data: {
           simpleData: {
+            //启用简单数据模式
             enable: true,
+            //树节点id，一般是后台数据库主键
             idKey: "id",
+            //父级id
             pIdKey: "pid",
             rootPId: "0",
           },
         },
+        //ztree回调函数
         callback: {
+          //树选择事件
           onCheck: this.ztreeOnCheck,
         },
       },
-
-      //控制分配弹框的显示和隐藏
+      //控制分配权限弹框的显示和隐藏
       autnDialogVisible: false,
       //分配权限弹框标题
       autnTitle: "",
@@ -217,6 +229,13 @@ export default {
     };
   },
   methods: {
+    //获取选择的权限
+    ztreeOnCheck() {},
+    handleCreated: function (ztreeObj) {
+      this.ztreeObj = ztreeObj;
+      // 全部展开
+      ztreeObj.expandAll(true);
+    },
     //确认新增或编辑按钮事件
     confirmBtn() {
       this.$refs.addRole.validate((valid) => {
@@ -248,8 +267,212 @@ export default {
     },
     //分配角色事件
     assignRole(row) {
-      console.log(row);
       this.autnDialogVisible = true;
+      this.treeDatas = [
+        {
+          id: 17,
+          pid: 0,
+          name: "系统管理",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 18,
+          pid: 17,
+          name: "用户管理",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 20,
+          pid: 18,
+          name: "新增",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 21,
+          pid: 18,
+          name: "修改",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 22,
+          pid: 18,
+          name: "删除",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 23,
+          pid: 17,
+          name: "角色管理",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 25,
+          pid: 23,
+          name: "新增",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 26,
+          pid: 23,
+          name: "修改",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 27,
+          pid: 23,
+          name: "删除",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 28,
+          pid: 17,
+          name: "权限管理",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 30,
+          pid: 28,
+          name: "新增",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 31,
+          pid: 28,
+          name: "修改",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 32,
+          pid: 28,
+          name: "删除",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 33,
+          pid: 17,
+          name: "机构管理",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 34,
+          pid: 0,
+          name: "商品管理",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 36,
+          pid: 34,
+          name: "分类管理",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 37,
+          pid: 34,
+          name: "品牌管理",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 38,
+          pid: 36,
+          name: "新增",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 39,
+          pid: 36,
+          name: "编辑",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 40,
+          pid: 37,
+          name: "新增",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 41,
+          pid: 37,
+          name: "编辑",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 42,
+          pid: 0,
+          name: "系统工具",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 43,
+          pid: 42,
+          name: "代码生成",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 46,
+          pid: 33,
+          name: "新增",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 76,
+          pid: 33,
+          name: "编辑",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 77,
+          pid: 42,
+          name: "接口文档",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 78,
+          pid: 33,
+          name: "删除",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 79,
+          pid: 23,
+          name: "分配权限",
+          open: null,
+          checked: true,
+        },
+        {
+          id: 80,
+          pid: 18,
+          name: "分配角色",
+          open: null,
+          checked: true,
+        },
+      ];
     },
     //删除角色事件
     deleteRole(row) {
