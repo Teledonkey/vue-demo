@@ -98,8 +98,14 @@
       </span>
     </el-dialog>
     <!-- 分配权限弹框 -->
-    <el-dialog :title="autnTitle" :visible.sync="autnDialogVisible" width="30%">
+    <el-dialog
+      class="self_dialog"
+      :title="autnTitle"
+      :visible.sync="autnDialogVisible"
+      width="30%"
+    >
       <tree
+        :setting="setting"
         :nodes="treeDatas"
         @onCheck="ztreeOnCheck"
         @onCreated="handleCreated"
@@ -267,6 +273,7 @@ export default {
     },
     //分配角色事件
     assignRole(row) {
+      console.log(row);
       this.autnDialogVisible = true;
       this.treeDatas = [
         {
@@ -490,5 +497,32 @@ export default {
 <style lang="scss" scoped>
 .btn-left {
   margin-left: 30px;
+}
+
+.self_dialog {
+  display: flex;
+  justify-content: center;
+  align-items: Center;
+  overflow: hidden;
+}
+
+.self_dialog /deep/ .el-dialog {
+  margin: 0 auto !important;
+  height: 90%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+}
+.self_dialog /deep/ .el-dialog .el-dialog__body {
+  padding-top: 5px !important;
+  overflow: hidden;
+  overflow-y: auto;
+  margin-bottom: 40px;
+}
+.self_dialog /deep/ .el-dialog .el-dialog__footer {
+  left: 40%;
+  bottom: 0;
+  position: absolute;
 }
 </style>
