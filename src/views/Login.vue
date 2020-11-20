@@ -410,7 +410,7 @@ export default {
           //提交到store
           this.$store.commit("getMenuList",this.$router);
           //登陆成功跳转到首页
-          this.$router.push("home");
+          this.$router.push("/");
         }
       });
     },

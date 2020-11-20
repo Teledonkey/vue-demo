@@ -26,12 +26,12 @@ const routes = [
   //   component: () => import(/* webpackChunkName: "about" */ '../views/test/box.vue')
   // },
   {
-    path: '/home',
+    path: '/',
     name: 'home',
     component: Home,
     children: [
       {
-        path: '/',
+        path: '',
         name: 'desktop',
         component: () => import('@/views/Desktop.vue')
       },

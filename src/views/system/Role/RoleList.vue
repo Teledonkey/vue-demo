@@ -71,7 +71,7 @@
     >
     </el-pagination>
     <!-- 新增角色对话框 -->
-    <el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="42%">
+    <el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="45%">
       <el-form
         ref="addRole"
         :rules="rules"
