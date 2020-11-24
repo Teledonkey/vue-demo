@@ -5,6 +5,7 @@
     closable
     @tab-click="tabClick"
     @tab-remove="removeTab"
+    style="height: 40px;"
   >
     <el-tab-pane
       v-for="item in editableTabs"
